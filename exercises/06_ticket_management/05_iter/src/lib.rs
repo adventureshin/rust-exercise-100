@@ -34,6 +34,10 @@ impl TicketStore {
     pub fn add_ticket(&mut self, ticket: Ticket) {
         self.tickets.push(ticket);
     }
+
+    pub fn iter(&self) -> std::slice::Iter<Ticket> {
+        self.tickets.iter()
+    }
 }
 
 #[cfg(test)]
@@ -60,6 +64,7 @@ mod tests {
         store.add_ticket(ticket);
 
         let tickets: Vec<&Ticket> = store.iter().collect();
+        print!("tickets: {:?}", tickets);
         let tickets2: Vec<&Ticket> = store.iter().collect();
         assert_eq!(tickets, tickets2);
     }
